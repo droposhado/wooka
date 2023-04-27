@@ -1,0 +1,5 @@
+bandit
+isort
+liccheck
+pylint
+ruff

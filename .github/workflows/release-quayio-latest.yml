@@ -1,0 +1,24 @@
+name: release quayio latest
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+
+  build-push:
+    uses: droposhado/workflows/.github/workflows/docker-build-push.yml@main
+    with:
+      registry: quay.io
+      repo: "droposhado/wooka"
+      tag: "latest"
+      push: true
+
+      # This file has an example configuration that appears to reveal a token,
+      # however it is example only and does not contain sensitive data
+      skip-files: "/venv/wooka/lib/python3.10/site-packages/errbot/config-template.py"
+    secrets:
+      username: ${{ secrets.USERNAME }}
+      password: ${{ secrets.PASSWORD }}

@@ -1,0 +1,6 @@
+[Core]
+Name = wooka_version
+Module = wooka_version
+
+[Documentation]
+Description = Plugin that displays bot build information.

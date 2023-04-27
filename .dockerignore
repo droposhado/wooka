@@ -1,0 +1,10 @@
+.cache
+.editorconfig
+.gitignore
+.github
+
+requirements-dev.txt
+
+Dockerfile
+Makefile
+README.md

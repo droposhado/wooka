@@ -1,0 +1,33 @@
+name: release quayio tag
+on:
+  push:
+    tags:
+      - '*'
+
+  workflow_dispatch:
+
+jobs:
+
+  extraction:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
+    steps:
+      - name: Extract tag
+        uses: ncipollo/semantic-version-action@v1
+        id: tag
+
+  build-push:
+    uses: droposhado/workflows/.github/workflows/docker-build-push.yml@main
+    with:
+      registry: quay.io
+      repo: droposhado/wooka
+      tag: ${{ needs.extraction.outputs.tag }}
+      push: true
+
+      # This file has an example configuration that appears to reveal a token,
+      # however it is example only and does not contain sensitive data
+      skip-files: "/venv/wooka/lib/python3.10/site-packages/errbot/config-template.py"
+    secrets:
+      username: ${{ secrets.USERNAME }}
+      password: ${{ secrets.PASSWORD }}

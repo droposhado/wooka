@@ -1,0 +1,15 @@
+errbot
+err-backend-discord==3.0.1
+
+raven
+sentry-sdk
+
+# sentry-sdk dependency
+blinker
+
+# resolve error dependency from launchpadlib 1.10.13
+testresources
+
+cryptography>=39.0.1
+
+setuptools>=65.5.1
