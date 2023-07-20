@@ -13,6 +13,7 @@ jobs:
     with:
       registry: quay.io
       repo: "droposhado/wooka"
+      platforms: "linux/amd64,linux/arm64"
       tag: "latest"
       push: true
 
