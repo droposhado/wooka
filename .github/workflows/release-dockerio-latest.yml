@@ -1,4 +1,4 @@
-name: release quayio latest
+name: release dockerio latest
 on:
   push:
     branches:

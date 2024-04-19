@@ -1,4 +1,4 @@
-name: release quayio tag
+name: release dockerio tag
 on:
   push:
     tags:
