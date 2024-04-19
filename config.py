@@ -55,7 +55,7 @@ ROOT = os.path.dirname(os.path.realpath(__file__))
 # 'Telegram' - cloud-based mobile and desktop messaging app with a focus
 #              on security and speed. (https://telegram.org/)
 
-BACKEND = 'Discord'  # defaults to XMPP
+BACKEND = 'Zulip'  # defaults to XMPP
 
 # STORAGE selection.
 # This configures the type of persistence you wish to use Errbot with.
@@ -101,10 +101,7 @@ BOT_EXTRA_PLUGIN_DIR = os.path.join(ROOT, "extra_plugins")
 
 # If you use an external backend as a plugin,
 # this is where you tell Errbot where to find it.
-#BOT_EXTRA_BACKEND_DIR = os.path.join(ROOT, "extra_backend")
-
-# Temporary, next release fix it
-BOT_EXTRA_BACKEND_DIR = site.getsitepackages()[0]
+BOT_EXTRA_BACKEND_DIR = os.path.join(ROOT, "extra_backend")
 
 # If you want only a subset of the core plugins that are bundled with errbot,
 # you can specify them here.
@@ -184,8 +181,9 @@ BOT_ASYNC_POOLSIZE = 10
 
 # The identity, or credentials, used to connect to a server
 BOT_IDENTITY = {
-    'token': os.getenv('DISCORD_KEY', None),
-    'initial_intents': 'all'
+    'email': os.getenv('ZULIP_EMAIL'),
+    'key': os.getenv('ZULIP_KEY'),
+    'site': os.getenv('ZULIP_SITE')
 }
 
 # Set the admins of your bot. Only these users will have access
@@ -193,7 +191,7 @@ BOT_IDENTITY = {
 #
 # Unix-style glob patterns are supported, so 'gbin@localhost'
 # would be considered an admin if setting '*@localhost'.
-BOT_ADMINS = tuple(os.getenv('BOT_ADMINS', '').split(','))
+BOT_ADMINS = tuple(os.getenv('BOT_ADMINS', None).split(','))
 
 # Set of admins that wish to receive administrative bot notifications.
 # BOT_ADMINS_NOTIFICATIONS = ()
@@ -203,14 +201,14 @@ BOT_ADMINS = tuple(os.getenv('BOT_ADMINS', '').split(','))
 # should include the # sign here. For XMPP rooms that are password
 # protected, you can specify another tuple here instead of a string,
 # using the format (RoomName, Password).
-CHATROOM_PRESENCE = tuple(os.getenv('CHATROOM_PRESENCE', '').split(','))
+CHATROOM_PRESENCE = ()
 
 # The FullName, or nickname, your bot should use. What you set here will
 # be the nickname that Errbot shows in chatrooms. Note that some XMPP
 # implementations, notably HipChat, are very picky about what name you
 # use. In the case of HipChat, make sure this matches exactly with the
 # name you gave the user.
-# CHATROOM_FN = 'Wooka'
+CHATROOM_FN = os.getenv('CHATROOM_FN')
 
 ##########################################################################
 # Prefix configuration                                                   #
@@ -223,7 +221,7 @@ CHATROOM_PRESENCE = tuple(os.getenv('CHATROOM_PRESENCE', '').split(','))
 # If the prefix is changed from the default, the help strings will be
 # automatically adjusted for you.
 #
-BOT_PREFIX = '!'
+BOT_PREFIX = os.getenv('BOT_PREFIX', '!')
 #
 # Uncomment the following and set it to True if you want the prefix to be
 # optional for normal chat.
@@ -234,7 +232,7 @@ BOT_PREFIX = '!'
 # names, rather than the BOT_PREFIX above. This option allows you to
 # specify alternative prefixes the bot will respond to in addition to
 # the prefix above.
-# BOT_ALT_PREFIXES = ('@Wooka',)
+BOT_ALT_PREFIXES = tuple(os.getenv('BOT_ALT_PREFIXES', None).split(','))
 
 # If you use alternative prefixes, you might want to allow users to insert
 # separators like , and ; between the prefix and the command itself. This
@@ -296,11 +294,11 @@ BOT_PREFIX = '!'
 
 # Uncomment and set this to True to hide the restricted commands from
 # the help output.
-# HIDE_RESTRICTED_COMMANDS = False
+HIDE_RESTRICTED_COMMANDS = True
 
 # Uncomment and set this to True to ignore commands from users that have no
 # access for these instead of replying with error message.
-# HIDE_RESTRICTED_ACCESS = False
+HIDE_RESTRICTED_ACCESS = True
 
 # A list of commands which should be responded to in private, even if
 # the command was given in a MUC. For example:

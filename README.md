@@ -1,6 +1,6 @@
 # Wooka
 
-Operations chatbot which currently uses Discord as an interface,
+Operations chatbot which currently uses ZULIP as an interface,
 provides quick addition, listing, searching and simple editing
 for resources.
 
@@ -12,20 +12,6 @@ Plugins developed to operate on this bot follow the scheme:
 
 See the plugins documentation for more usage information.
 
-## Invitation link
-
-You need this link to add the bot to your server if it is private,
-it must be accessed via browser and selected the server where you are owner/admin.
-
-```
-https://discord.com/oauth2/authorize?client_id=9999999999&scope=bot&permissions=8
-```
-
-Where 9999999999 is `client_id`, obtained on `dev dashboard > app > bot > oauth`.
-
-Notice that 8 represents admin and this must be set correctly,
-in the future I will check only the necessary permissions,
-if you want you can open a PR with these modifications
 
 ## Environment variables
 

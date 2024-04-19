@@ -13,7 +13,9 @@ RUN apk add --no-cache alpine-sdk libffi-dev && \
     git clone https://github.com/droposhado/err-maya-plugin.git extra_plugins/err-maya-plugin && \
     $VENV/bin/pip install --no-cache-dir -r extra_plugins/err-maya-plugin/requirements.txt && \
     $APP/extra_plugins/err-wooka-version/generate-version.sh > $APP/extra_plugins/err-wooka-version/version.json && \
-    mkdir $APP/data
+    mkdir $APP/data && mkdir $APP/extra_backend && \
+    git clone https://github.com/zulip/errbot-backend-zulip.git extra_backend && \
+    $VENV/bin/pip install --no-cache-dir -r extra_backend/errbot-backend-zulip/requirements.txt
 
 
 FROM python:3.10-alpine3.17

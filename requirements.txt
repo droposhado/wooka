@@ -1,5 +1,4 @@
 errbot
-err-backend-discord==3.0.1
 
 raven
 sentry-sdk

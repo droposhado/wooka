@@ -11,7 +11,7 @@ jobs:
   build-push:
     uses: droposhado/workflows/.github/workflows/docker-build-push.yml@main
     with:
-      registry: quay.io
+      registry: docker.io
       repo: "droposhado/wooka"
       platforms: "linux/amd64,linux/arm64"
       tag: "dev"
@@ -21,5 +21,5 @@ jobs:
       # however it is example only and does not contain sensitive data
       skip-files: "/venv/wooka/lib/python3.10/site-packages/errbot/config-template.py"
     secrets:
-      username: ${{ secrets.QUAYIO_USERNAME }}
-      password: ${{ secrets.QUAYIO_PASSWORD }}
+      username: ${{ secrets.DOCKERIO_USERNAME }}
+      password: ${{ secrets.DOCKERIO_PASSWORD }}
