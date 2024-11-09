@@ -203,7 +203,7 @@ BOT_ADMINS = tuple(os.getenv('BOT_ADMINS', "").split(','))
 # protected, you can specify another tuple here instead of a string,
 # using the format (RoomName, Password).
 # CHATROOM_PRESENCE = (os.getenv('CHATROOM_PRESENCE', ""), os.getenv('CHATROOM_PASSWORD', ""))
-CHATROOM_PRESENCE = (os.getenv('CHATROOM_PRESENCE', ""),)
+CHATROOM_PRESENCE = tuple(os.getenv('CHATROOM_PRESENCE', "").split(",")
 
 # The FullName, or nickname, your bot should use. What you set here will
 # be the nickname that Errbot shows in chatrooms. Note that some XMPP
