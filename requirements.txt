@@ -1,5 +1,10 @@
 errbot
 
+# xmpp
+slixmpp
+pyasn1
+pyasn1-modules
+
 raven
 sentry-sdk
 

@@ -1,5 +1,8 @@
 .PHONY: deps dev
 
+run:
+	errbot --config config.py
+
 build:
 	docker build -t droposhado/wooka:latest
 

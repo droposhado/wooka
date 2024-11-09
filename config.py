@@ -55,7 +55,7 @@ ROOT = os.path.dirname(os.path.realpath(__file__))
 # 'Telegram' - cloud-based mobile and desktop messaging app with a focus
 #              on security and speed. (https://telegram.org/)
 
-BACKEND = 'Zulip'  # defaults to XMPP
+BACKEND = 'XMPP'  # defaults to XMPP
 
 # STORAGE selection.
 # This configures the type of persistence you wish to use Errbot with.
@@ -101,7 +101,7 @@ BOT_EXTRA_PLUGIN_DIR = os.path.join(ROOT, "extra_plugins")
 
 # If you use an external backend as a plugin,
 # this is where you tell Errbot where to find it.
-BOT_EXTRA_BACKEND_DIR = os.path.join(ROOT, "extra_backend")
+# BOT_EXTRA_BACKEND_DIR = os.path.join(ROOT, "extra_backend")
 
 # If you want only a subset of the core plugins that are bundled with errbot,
 # you can specify them here.
@@ -160,8 +160,6 @@ if SENTRY_DSN is not None:
     BOT_LOG_SENTRY = True
     BOT_LOG_SENTRY_FLASK = True
 
-    
-    
 # Set an optional Sentry transport other than the default Threaded.
 # For more info, see
 # https://docs.sentry.io/error-reporting/configuration/?platform=python#transport-options
@@ -181,9 +179,9 @@ BOT_ASYNC_POOLSIZE = 10
 
 # The identity, or credentials, used to connect to a server
 BOT_IDENTITY = {
-    'email': os.getenv('ZULIP_EMAIL'),
-    'key': os.getenv('ZULIP_KEY'),
-    'site': os.getenv('ZULIP_SITE')
+    'username': os.getenv('XMPP_USERNAME', None),  # The JID of the user you have created for the bot
+    'password': os.getenv('XMPP_PASSWORD', None),  # The corresponding password for this user
+    # 'server': ('host.domain.tld',5222), # server override
 }
 
 # Set the admins of your bot. Only these users will have access
@@ -191,7 +189,10 @@ BOT_IDENTITY = {
 #
 # Unix-style glob patterns are supported, so 'gbin@localhost'
 # would be considered an admin if setting '*@localhost'.
-BOT_ADMINS = tuple(os.getenv('BOT_ADMINS', None).split(','))
+# 
+# To XMPP
+# BOT_ADMINS = (‘gbin@someplace.com’, ‘zoni@somewhere.else.com’)
+BOT_ADMINS = tuple(os.getenv('BOT_ADMINS', "").split(','))
 
 # Set of admins that wish to receive administrative bot notifications.
 # BOT_ADMINS_NOTIFICATIONS = ()
@@ -201,14 +202,14 @@ BOT_ADMINS = tuple(os.getenv('BOT_ADMINS', None).split(','))
 # should include the # sign here. For XMPP rooms that are password
 # protected, you can specify another tuple here instead of a string,
 # using the format (RoomName, Password).
-CHATROOM_PRESENCE = ()
+CHATROOM_PRESENCE = tuple(os.getenv('CHATROOM_PRESENCE', None))
 
 # The FullName, or nickname, your bot should use. What you set here will
 # be the nickname that Errbot shows in chatrooms. Note that some XMPP
 # implementations, notably HipChat, are very picky about what name you
 # use. In the case of HipChat, make sure this matches exactly with the
 # name you gave the user.
-CHATROOM_FN = os.getenv('CHATROOM_FN')
+# CHATROOM_FN = os.getenv('CHATROOM_FN', )
 
 ##########################################################################
 # Prefix configuration                                                   #
@@ -221,7 +222,7 @@ CHATROOM_FN = os.getenv('CHATROOM_FN')
 # If the prefix is changed from the default, the help strings will be
 # automatically adjusted for you.
 #
-BOT_PREFIX = os.getenv('BOT_PREFIX', '!')
+BOT_PREFIX = os.getenv('BOT_PREFIX', '/')
 #
 # Uncomment the following and set it to True if you want the prefix to be
 # optional for normal chat.
@@ -232,7 +233,7 @@ BOT_PREFIX = os.getenv('BOT_PREFIX', '!')
 # names, rather than the BOT_PREFIX above. This option allows you to
 # specify alternative prefixes the bot will respond to in addition to
 # the prefix above.
-BOT_ALT_PREFIXES = tuple(os.getenv('BOT_ALT_PREFIXES', None).split(','))
+# BOT_ALT_PREFIXES = tuple(os.getenv('BOT_ALT_PREFIXES', "").split(','))
 
 # If you use alternative prefixes, you might want to allow users to insert
 # separators like , and ; between the prefix and the command itself. This
