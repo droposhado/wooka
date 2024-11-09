@@ -210,7 +210,7 @@ CHATROOM_PRESENCE = (os.getenv('CHATROOM_PRESENCE', ""),)
 # implementations, notably HipChat, are very picky about what name you
 # use. In the case of HipChat, make sure this matches exactly with the
 # name you gave the user.
-# CHATROOM_FN = os.getenv('CHATROOM_FN', )
+CHATROOM_FN = os.getenv('CHATROOM_FN', None)
 
 ##########################################################################
 # Prefix configuration                                                   #
