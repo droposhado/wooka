@@ -10,8 +10,8 @@ COPY . .
 RUN apk add --no-cache alpine-sdk libffi-dev && \
     python -m venv $VENV && \
     $VENV/bin/pip install --no-cache-dir -r requirements.txt && \
-    git clone https://github.com/droposhado/err-maya-plugin.git extra_plugins/err-maya-plugin && \
-    $VENV/bin/pip install --no-cache-dir -r extra_plugins/err-maya-plugin/requirements.txt && \
+    # git clone https://github.com/droposhado/err-maya-plugin.git extra_plugins/err-maya-plugin && \
+    # $VENV/bin/pip install --no-cache-dir -r extra_plugins/err-maya-plugin/requirements.txt && \
     $APP/extra_plugins/err-wooka-version/generate-version.sh > $APP/extra_plugins/err-wooka-version/version.json && \
     mkdir $APP/data
 
